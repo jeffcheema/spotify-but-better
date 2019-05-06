@@ -115,7 +115,7 @@ data =   (function() { var result; $.ajax({ type:'GET', url:"/api/search/"+term+
 //document.querySelector(".mdl-card__title-text").innerHTML = data.name;
 
 artistText = "";
-document.querySelector("#template").innerHTML = '<div class="wrapper"> <div class="float-left thumbnail" style="background-image:url({{thumbnail}}) no-repeat; background-size:cover;"> </div> <div class="result card"> <div> <a href="{{results}}">{{name}}</a> </div> </div> </div>'
+document.querySelector("#template").innerHTML = '<div class="wrapper"> <div class="float-left thumbnail" style="background-image:url({{thumbnail}}) no-repeat; background-size:cover;"> </div> <div class="result card"> <div> <a href="{{results}}" target="_blank">{{name}}</a> </div> </div> </div>'
 //document.querySelector("#artists").innerHTML = artistText;
 template("#template", data);
 }
