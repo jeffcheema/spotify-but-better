@@ -1,29 +1,135 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+            mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <div class="mdl-layout-spacer"></div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+               for="fixed-header-drawer-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="sample"
+                 id="fixed-header-drawer-exp">
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">SBB</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">Playlist</a>
+      <a class="mdl-navigation__link" href="">Library</a>
+      <a class="mdl-navigation__link" href="">Profile</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+
+<div id="template">
+
+<div class="wrapper">
+  <div class="float-left thumbnail" style="background-image:url({{thumbnail}}) no-repeat; background-size:cover;">
+
+    </div>
+    <div class="result card">
+    <div>
+{{name}}
+</div>
+  </div>
+  </div>
+  </div>
+    </div>
+  </main>
+</div>
+
+
 <style>
-.demo-card-square.mdl-card {
-  width: 320px;
-  height: 320px;
+  .wrapper{
+    height:5%;
+  }
+  .thumbnail{
+width:20%;
+height:100%;
+  }
+  .float-left
+{
+  float: left;
 }
-.demo-card-square > .mdl-card__title {
-  color: #fff;
-  background:
-    url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
+
+.float-right
+{
+  float: right;
+}
+  @font-face {
+  font-family: product-sans;
+  src: url(ProductSans-Regular.ttf);
+}
+.product-sans{
+    font-family: product-sans;
+}
+body{
+  font-family: product-sans !important;
+
+}
+  .page-content{
+  }
+  .result{
+    padding:15px;
+    padding-left:5%;
+    width:100%;
+  }
+  .card {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  background-color:white;
 }
 </style>
 
-<div class="demo-card-square mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title mdl-card--expand">
-    <h2 class="mdl-card__title-text">Update</h2>
-  </div>
-  <div class="mdl-card__supporting-text">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Aenan convallis.
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-      View Updates
-    </a>
-  </div>
-</div>
+<script>
+  template = function(l, object){
+    //define the return array
+    returnArray = [];
+    //get the element's inner html so you can insert the JSON data
+    const element = document.querySelector(l).innerHTML;
+    //for loop, for every object in the object variable, replaces any key that is referenced in the element as {{key}}.
+    for (var i=0; i < object.length;i++){
+        //grab the names of all the json objects
+        r = Object.keys(object[i]);
+        //console.log(r)
+
+        var tem = element;
+        //for every object in the json list,
+        for(var a=0;a < r.length;a++){
+            b="object["+i.toString()+"]."+r[a];
+            c= eval(b);
+            tem = tem.replace("{{"+r[a]+"}}", c);
+        }
+        //push that index of
+        returnArray.push(tem);
+
+    }
+    document.querySelector(l).innerHTML=returnArray.join(" ");
+};
+
+function search(term){
+data =   (function() { var result; $.ajax({ type:'GET', url:"http://localhost:3000/api/search/"+term+"", dataType:'json', async:false, success:function(data){ result = data; } }); return result; })();
+//document.querySelector(".mdl-card__title-text").innerHTML = data.name;
+
+artistText = "";
+
+//document.querySelector("#artists").innerHTML = artistText;
+template("#template", data);
+}
+
+
+search("bts fire")
+console.log(data);
+  </script>

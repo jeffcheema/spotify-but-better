@@ -56,6 +56,17 @@ request(stdout).pipe(res);
       }
   });
 })
+app.get('/search/direct/:artist/:name', function (req, res) {
+
+  exec('youtube-dl -x -g "ytsearch1:' + req.params.name + ' ' + req.params.artist +' lyric video";',
+    function (error, stdout, stderr) {
+      var jsonData = stdout;
+request(stdout).pipe(res);
+      if (error !== null) {
+        console.log('exec error: ' + error);
+      }
+  });
+})
 app.get('/api/video/:id', function (req, res) {
 
   exec('youtube-dl -j '+req.params.id+';',
@@ -75,26 +86,40 @@ function search2ID(term){
 var res = arequest('GET', url);
   return JSON.parse(res.getBody('utf8'));
 }
+app.get('/api/album/:id', function (req, res) {
+
+  const musicAPI = require('music-api');
+
+  musicAPI.getAlbum('netease', {
+    id: req.params.id
+  })
+    .then(resu=> res.send(resu))
+    .catch(err => console.log(err))
+});
 app.get('/api/search/:id', function (req, res) {
   var response = [];
   var gen = [];
   musicAPI.searchSong('netease', {
     key: req.params.id,
-    limit: 1,
+    limit: 10,
     page: 1,
   })
     .then(result => {
       for (i = 0; i < result.songList.length; i++){
         song = result.songList[i];
-      thing = {"cover":[], "artists":[],"name":"","url":"","results":""};
+        console.log(song)
+      thing = {"cover":[],"thumbnail":"", "artists":[],"name":"","url":"","results":"", "albumName":"", "albumID":""};
       thing.cover.push(song.album.cover);
       thing.cover.push(song.album.coverBig);
+      thing.thumbnail = song.album.coverSmall;
       thing.cover.push(song.album.coverSmall);
+      thing.albumID = song.album.id;
+      thing.albumName = song.album.name;
       for (q = 0; q< song.artists.length;q++){
         thing.artists.push(song.artists[q].name)
       }
         thing.name = song.name;
-        thing.results = aexec('youtube-dl -x -g "ytsearch1:' + thing.name + ' ' + thing.artists[0] +' lyrics"'+req.params.id+';', 10000);
+        thing.results = "/saerch/direct" + thing.artists[0] + "/" + thing.name;
         response.push(thing)
 
 
