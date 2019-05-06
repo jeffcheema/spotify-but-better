@@ -119,7 +119,7 @@ app.get('/api/search/:id', function (req, res) {
         thing.artists.push(song.artists[q].name)
       }
         thing.name = song.name;
-        thing.results = "/saerch/direct" + thing.artists[0] + "/" + thing.name;
+        thing.results = "/search/direct/" + thing.artists[0] + "/" + thing.name;
         response.push(thing)
 
 

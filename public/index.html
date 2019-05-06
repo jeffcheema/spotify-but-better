@@ -35,16 +35,7 @@
 
 <div id="template">
 
-<div class="wrapper">
-  <div class="float-left thumbnail" style="background-image:url({{thumbnail}}) no-repeat; background-size:cover;">
 
-    </div>
-    <div class="result card">
-    <div>
-{{name}}
-</div>
-  </div>
-  </div>
   </div>
     </div>
   </main>
@@ -120,16 +111,22 @@ body{
 };
 
 function search(term){
-data =   (function() { var result; $.ajax({ type:'GET', url:"http://localhost:3000/api/search/"+term+"", dataType:'json', async:false, success:function(data){ result = data; } }); return result; })();
+data =   (function() { var result; $.ajax({ type:'GET', url:"/api/search/"+term+"", dataType:'json', async:false, success:function(data){ result = data; } }); return result; })();
 //document.querySelector(".mdl-card__title-text").innerHTML = data.name;
 
 artistText = "";
-
+document.querySelector("#template").innerHTML = '<div class="wrapper"> <div class="float-left thumbnail" style="background-image:url({{thumbnail}}) no-repeat; background-size:cover;"> </div> <div class="result card"> <div> <a href="{{results}}">{{name}}</a> </div> </div> </div>'
 //document.querySelector("#artists").innerHTML = artistText;
 template("#template", data);
 }
 
-
+$('#fixed-header-drawer-exp').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+    search(document.querySelector("#fixed-header-drawer-exp").value);
+    }
+});
 search("bts fire")
+
 console.log(data);
   </script>
