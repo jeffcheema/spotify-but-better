@@ -1,135 +1,75 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
-            mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <div class="mdl-layout-spacer"></div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                  mdl-textfield--floating-label mdl-textfield--align-right">
-        <label class="mdl-button mdl-js-button mdl-button--icon"
-               for="fixed-header-drawer-exp">
-          <i class="material-icons">search</i>
-        </label>
-        <div class="mdl-textfield__expandable-holder">
-          <input class="mdl-textfield__input" type="text" name="sample"
-                 id="fixed-header-drawer-exp">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="import" href="imports.html"/>
+  <title>SBB</title>
+</head>
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+              mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                    mdl-textfield--floating-label mdl-textfield--align-right">
+          <label class="mdl-button mdl-js-button mdl-button--icon"
+                 for="fixed-header-drawer-exp">
+            <i class="material-icons">search</i>
+          </label>
+          <div class="mdl-textfield__expandable-holder">
+            <input class="mdl-textfield__input" type="text" name="sample"
+                   id="fixed-header-drawer-exp">
+          </div>
         </div>
       </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">SBB</span>
+
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+      </nav>
     </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">SBB</span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">Playlist</a>
-      <a class="mdl-navigation__link" href="">Library</a>
-      <a class="mdl-navigation__link" href="">Profile</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-    </nav>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+  <div class="page">
+    <div id="template">
+
+
+
+
+
+      <div class="track">
+     <div class="trackplay">
+         <div class="play">
+             <button class="bubbly-button" style="background-image: url({{thumbnail}})"></button>
+         </div>
+         <div class="trackname">
+             <h5>{{name}}</h5>
+             <h6><a href="/#!/album/{{albumID}}" onclick="album()">{{albumName}}</a></h6>
+         </div>
+     </div>
+     <div class="fav">
+         <div>
+             <svg class="feather" xmlns="http://www.w3.org/2000/svg" width="2.4rem" height="2.4rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+         </div>
+     </div>
+ </div>
+       </div>
+       </div>
+<div class="page">
+  <div id="jumbotron"></div>
   </div>
-  <main class="mdl-layout__content">
-    <div class="page-content">
 
-<div id="template">
-
-<div class="wrapper">
-  <div class="float-left thumbnail" style="background-image:url({{thumbnail}}) no-repeat; background-size:cover;">
-
-    </div>
-    <div class="result card">
-    <div>
-{{name}}
-</div>
+    </main>
   </div>
-  </div>
-  </div>
-    </div>
-  </main>
-</div>
-
-
-<style>
-  .wrapper{
-    height:5%;
-  }
-  .thumbnail{
-width:20%;
-height:100%;
-  }
-  .float-left
-{
-  float: left;
-}
-
-.float-right
-{
-  float: right;
-}
-  @font-face {
-  font-family: product-sans;
-  src: url(ProductSans-Regular.ttf);
-}
-.product-sans{
-    font-family: product-sans;
-}
-body{
-  font-family: product-sans !important;
-
-}
-  .page-content{
-  }
-  .result{
-    padding:15px;
-    padding-left:5%;
-    width:100%;
-  }
-  .card {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  background-color:white;
-}
-</style>
-
-<script>
-  template = function(l, object){
-    //define the return array
-    returnArray = [];
-    //get the element's inner html so you can insert the JSON data
-    const element = document.querySelector(l).innerHTML;
-    //for loop, for every object in the object variable, replaces any key that is referenced in the element as {{key}}.
-    for (var i=0; i < object.length;i++){
-        //grab the names of all the json objects
-        r = Object.keys(object[i]);
-        //console.log(r)
-
-        var tem = element;
-        //for every object in the json list,
-        for(var a=0;a < r.length;a++){
-            b="object["+i.toString()+"]."+r[a];
-            c= eval(b);
-            tem = tem.replace("{{"+r[a]+"}}", c);
-        }
-        //push that index of
-        returnArray.push(tem);
-
-    }
-    document.querySelector(l).innerHTML=returnArray.join(" ");
-};
-
-function search(term){
-data =   (function() { var result; $.ajax({ type:'GET', url:"http://localhost:3000/api/search/"+term+"", dataType:'json', async:false, success:function(data){ result = data; } }); return result; })();
-//document.querySelector(".mdl-card__title-text").innerHTML = data.name;
-
-artistText = "";
-
-//document.querySelector("#artists").innerHTML = artistText;
-template("#template", data);
-}
-
-
-search("bts fire")
-console.log(data);
-  </script>
+</body>
+</html>
