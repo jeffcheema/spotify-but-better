@@ -48,28 +48,67 @@
       <div class="track">
      <div class="trackplay">
          <div class="play">
-             <button class="bubbly-button" style="background-image: url({{thumbnail}})"></button>
+             <button class="bubbly-button" style="background-image: url({{thumbnail}})">
+               <i class="fas fa-play"></i>
+             </button>
          </div>
          <div class="trackname">
              <h5>{{name}}</h5>
-             <h6><a href="/#!/album/{{albumID}}" onclick="album()">{{albumName}}</a></h6>
+             <h6><a href="/#!/album/{{albumID}}" onclick="albumLink('{{albumID}}')">{{albumName}}</a></h6>
          </div>
      </div>
      <div class="fav">
          <div>
-             <svg class="feather" xmlns="http://www.w3.org/2000/svg" width="2.4rem" height="2.4rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-          </svg>
+           <i class="fas fa-ellipsis-v"></i>
+
+
          </div>
      </div>
  </div>
        </div>
        </div>
 <div class="page">
-  <div id="jumbotron"></div>
+  <div id="jumbotron" class="card mobile">
+  </div>
+  <div class="wrapper">
+  <div id="albumInfo" class="fullwidth card">
+  <span id="title" class="fullwidth"></span>
+  <br>
+<span id="artist" class="fullwidth"></span>
+</div>
+
+
+</div>
+<div id="tracklist">
+  <div class="track">
+ <div class="trackplay">
+     <div class="play">
+       <button class="bubbly-button albumResultsSong"><i class="fas fa-play"></i></button>
+
+     </div>
+     <div class="trackname">
+         <h5>{{name}}</h5>
+
+     </div>
+ </div>
+ <div class="fav">
+     <div>
+       <i class="fas fa-ellipsis-v"></i>
+
+
+     </div>
+ </div>
+</div>
+</div>
   </div>
 
     </main>
   </div>
+  <section id="footer" class="card">
+    <div class="trackname">
+        <h5>{{name}}</h5>
+
+    </div>
+  </section>
 </body>
 </html>

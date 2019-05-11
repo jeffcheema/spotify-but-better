@@ -107,7 +107,7 @@ app.get('/api/search/:id', function (req, res) {
     .then(result => {
       for (i = 0; i < result.songList.length; i++){
         song = result.songList[i];
-        console.log(song)
+        
       thing = {"cover":[],"thumbnail":"", "artists":[],"name":"","url":"","results":"", "albumName":"", "albumID":""};
       thing.cover.push(song.album.cover);
       thing.cover.push(song.album.coverBig);

@@ -1,3 +1,4 @@
+var currentresults; 
 var pg = document.querySelectorAll(".page")
 
 $(".page:eq(0)").fadeIn();
@@ -12,6 +13,10 @@ function s(a, selector) {
 	current = a;
 	console.log(a);
 }
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
 template = function (l, object) {
 	//define the return array
 	returnArray = [];
@@ -28,7 +33,7 @@ template = function (l, object) {
 		for (var a = 0; a < r.length; a++) {
 			b = "object[" + i.toString() + "]." + r[a];
 			c = eval(b);
-			tem = tem.replace("{{" + r[a] + "}}", c);
+			tem = tem.replaceAll("{{" + r[a] + "}}", c);
 		}
 		//push that index of
 		returnArray.push(tem);
@@ -81,14 +86,44 @@ var route = function(s, callback){
     }
     }
 }
+function ds(selector){
+	return document.querySelector(selector);
+}
+function dsa(selector){
+	return document.querySelectorAll(selector);
+}
+
+const tracklist = document.querySelector("#tracklist").innerHTML ;
+function setUpAlbum(data){
+	document.querySelector("#jumbotron").style.backgroundImage = "url('"+data.coverBig+"')";
+document.querySelector("#artist").innerHTML = data.artist.name
+	document.querySelector("#title").innerHTML = data.name;
+
+	console.log(data)
+	document.querySelector("#tracklist").innerHTML = tracklist;
+	//document.querySelector("#artists").innerHTML = artistText;
+	template("#tracklist", data.songList);
+	for (i = 0; i < dsa(".albumResultsSong").length; i++){
+		dsa(".albumResultsSong")[i].style.backgroundImage = "url('"+data.coverBig+"')";
+
+	}
+}
+
+
+function albumLink(t){
+
+      s(1, ".page");
+
+      data =   (function() { var result; $.ajax({ type:'GET', url:"/api/album/"+t+"", dataType:'json', async:false, success:function(data){ result = data; } }); return result; })();
+			setUpAlbum(data);
+}
 function album(){
 
       s(1, ".page");
       t = window.location.hash;
       t = t.replace("#!/", "").split("/")[1];
       data =   (function() { var result; $.ajax({ type:'GET', url:"/api/album/"+t+"", dataType:'json', async:false, success:function(data){ result = data; } }); return result; })();
-      document.querySelector("#jumbotron").style.backgroundImage = data.coverBig;
-
+setUpAlbum(data);
 }
 startroutes = function(){
 route("album", album);
