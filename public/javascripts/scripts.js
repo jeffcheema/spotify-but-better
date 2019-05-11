@@ -1,4 +1,4 @@
-var currentresults; 
+var currentresults;
 var pg = document.querySelectorAll(".page")
 
 $(".page:eq(0)").fadeIn();
@@ -50,7 +50,13 @@ artistText = "";
 document.querySelector("#template").innerHTML = temp;
 //document.querySelector("#artists").innerHTML = artistText;
 template("#template", data);
-s(0,".page")
+s(0,".page");
+var currentsearch = [];
+for (i = 0; i < data.length; i++){
+currentsearch.push({"artists":data[i].artists.join(", "), "name":data[i].name, "album":data[i].albumName,"albumID":data[i].albumID})
+
+}
+console.log(currentsearch)
 }
 
 $('#fixed-header-drawer-exp').keyup(function(e){

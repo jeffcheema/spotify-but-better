@@ -97,6 +97,9 @@ background-color:white;
   height:30%;
 
 }
+.mdl-layout__drawer-button{
+  background-color:white !important;
+}
 .page{
   height:100%;
 }
