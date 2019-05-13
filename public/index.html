@@ -48,13 +48,13 @@
       <div class="track">
      <div class="trackplay">
          <div class="play">
-             <button class="bubbly-button" style="background-image: url({{thumbnail}})">
+             <button class="bubbly-button" onclick="onPlayButtonClick({{index}})"style="background-image: url({{thumbnail}})">
                <i class="fas fa-play"></i>
              </button>
          </div>
          <div class="trackname">
-          
-             <h6><a href="/#!/album/{{albumID}}" onclick="albumLink('{{albumID}}')">{{albumName}}</a></h6>
+     <h5>{{title}}</h5>
+             <h6><a href="/#!/album/{{albumID}}" onclick="albumLink('{{albumID}}')">{{album}}</a></h6>
          </div>
      </div>
      <div class="fav">
@@ -106,8 +106,45 @@
   </div>
   <section id="footer" class="card">
     <div class="trackname">
-        <h5>{{name}}</h5>
+      <input class="mdl-slider mdl-js-slider" type="range"
+    min="0" max="100" value="0" tabindex="0">
+<br>
+<div class="musicControl">
+  <div class="musicButton">
+<marquee>
 
+</marquee>
+
+  </div>
+  <div class="musicButton">
+    <button class="fullwidth mdl-button mdl-js-button mdl-js-ripple-effect" onclick="back()">
+
+      <i class="fas fa-step-backward"></i>
+
+
+    </button>
+
+  </div>
+  <div class="musicButton">
+    <button class="fullwidth mdl-button mdl-js-button mdl-js-ripple-effect" onclick="playpause()">
+      <i class="fas fa-play"></i>
+
+
+    </button>
+
+  </div>
+  <div class="musicButton">
+    <button class="fullwidth mdl-button mdl-js-button mdl-js-ripple-effect" onclick="forward()">
+      <i class="fas fa-step-forward"></i>
+
+
+    </button>
+
+  </div>
+  <div class="musicButton">
+    <button class="fullwidth mdl-button mdl-js-button mdl-js-ripple-effect" onclick="more()"><i class="fas fa-ellipsis-v"></i></button>
+  </div>
+</div>
     </div>
   </section>
 </body>

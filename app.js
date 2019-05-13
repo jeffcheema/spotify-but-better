@@ -56,9 +56,9 @@ request(stdout).pipe(res);
       }
   });
 })
-app.get('/search/direct/:artist/:name', function (req, res) {
+app.get('/search/direct/:query', function (req, res) {
 
-  exec('youtube-dl -x -g "ytsearch1:' + req.params.name + ' ' + req.params.artist +' lyric video";',
+  exec('youtube-dl -x -g "ytsearch1:' + req.params.query +' lyrics video not mv";',
     function (error, stdout, stderr) {
       var jsonData = stdout;
 request(stdout).pipe(res);
@@ -107,7 +107,7 @@ app.get('/api/search/:id', function (req, res) {
     .then(result => {
       for (i = 0; i < result.songList.length; i++){
         song = result.songList[i];
-        
+
       thing = {"cover":[],"thumbnail":"", "artists":[],"name":"","url":"","results":"", "albumName":"", "albumID":""};
       thing.cover.push(song.album.cover);
       thing.cover.push(song.album.coverBig);
