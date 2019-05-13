@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="import" href="imports.html"/>
+  <link rel="manifest" href="manifest.json">
+<script src="javascripts/sw.js"></script>
   <title>SBB</title>
 </head>
 <body>
@@ -83,11 +85,11 @@
   <div class="track">
  <div class="trackplay">
      <div class="play">
-       <button class="bubbly-button albumResultsSong"><i class="fas fa-play"></i></button>
+       <button class="bubbly-button albumResultsSong" onclick="onPlayButtonClick({{index}})"><i class="fas fa-play"></i></button>
 
      </div>
      <div class="trackname">
-         <h5>{{name}}</h5>
+         <h5>{{title}}</h5>
 
      </div>
  </div>
@@ -106,7 +108,7 @@
   </div>
   <section id="footer" class="card">
     <div class="trackname">
-      <input class="mdl-slider mdl-js-slider" type="range"
+      <input class="mdl-slider mdl-js-slider" id="progressbar" type="range"
     min="0" max="100" value="0" tabindex="0">
 <br>
 <div class="musicControl">
@@ -126,7 +128,7 @@
 
   </div>
   <div class="musicButton">
-    <button class="fullwidth mdl-button mdl-js-button mdl-js-ripple-effect" onclick="playpause()">
+    <button id="playpause" class="fullwidth mdl-button mdl-js-button mdl-js-ripple-effect" onclick="playpause()">
       <i class="fas fa-play"></i>
 
 
@@ -147,5 +149,6 @@
 </div>
     </div>
   </section>
+  <audio style="display:none;"></audio>
 </body>
 </html>

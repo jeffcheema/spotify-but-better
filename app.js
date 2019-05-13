@@ -58,7 +58,7 @@ request(stdout).pipe(res);
 })
 app.get('/search/direct/:query', function (req, res) {
 
-  exec('youtube-dl -x -g "ytsearch1:' + req.params.query +' lyrics video not mv";',
+  exec('youtube-dl -x -g "ytsearch1:' + req.params.query +' lyrics";',
     function (error, stdout, stderr) {
       var jsonData = stdout;
 request(stdout).pipe(res);

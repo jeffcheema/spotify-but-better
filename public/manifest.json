@@ -1,0 +1,7 @@
+{
+  "name": "SBB",
+  "short_name": "SBB",
+  "description": "Music served through youtube",
+  "start_url": "/",
+  "display": "standalone"
+}
