@@ -137,14 +137,19 @@ setUpAlbum(data);
 }
 startroutes = function(){
 route("album", album);
+route("", function(){
+	s(0,"page")
+});
 }
 startroutes();
 let audio = document.createElement('audio');
 
-let playlist = getAwesomePlaylist();
+ playlist = currentsearch;
 
 var index = 0;
 function onPlayButtonClick(i) {
+playlist = currentsearch;
+
 index = i;
 	playAudio();
 
@@ -221,8 +226,3 @@ navigator.mediaSession.setActionHandler('pause', function() {
 });
 
 /* Utils */
-
-function getAwesomePlaylist() {
-console.log(currentsearch)
-  return currentsearch;
-}
