@@ -15,7 +15,7 @@
     "morgan": "~1.9.1",
     "music-api": "^0.3.11",
     "request": "^2.88.0",
-    "serve-favicon": "~2.3.2",
+    "serve-favicon": "^2.5.0",
     "sync-exec": "^0.6.2",
     "sync-request": "^6.1.0",
     "youtube-search": "^1.1.4"
